@@ -1,41 +1,39 @@
 package router
 
 import (
-	"net/http"
+	"firstproject/API/handler"
+	"time"
 
 	"github.com/gin-gonic/gin"
+
+	"github.com/didip/tollbooth/v6"
+	"github.com/didip/tollbooth/v6/limiter"
 )
 
+// Unused
+func createRateLimiter() *limiter.Limiter {
+	// Set limit to 1 request per second per client
+	requestLimit := tollbooth.NewLimiter(1, &limiter.ExpirableOptions{DefaultExpirationTTL: time.Second})
+
+	// Set message to be displayed when client hits the limit
+	requestLimit.SetMessage("Too many requests, please try again later.")
+
+	// Return the rate limiter
+	return requestLimit
+}
+
 func initializeRoutes(router *gin.Engine) {
+
 	v1 := router.Group("/api/v1")
 	{
 
 		// Show opening
-		v1.GET("/opening", func(ctx *gin.Context) {
-			ctx.JSON(http.StatusOK, gin.H{
-				"message": "GET Opening",
-			})
-		})
-		v1.POST("/opening", func(ctx *gin.Context) {
-			ctx.JSON(http.StatusOK, gin.H{
-				"message": "POST Opening",
-			})
-		})
-		v1.DELETE("/opening", func(ctx *gin.Context) {
-			ctx.JSON(http.StatusOK, gin.H{
-				"message": "DELETE Opening",
-			})
-		})
-		v1.PUT("/opening", func(ctx *gin.Context) {
-			ctx.JSON(http.StatusOK, gin.H{
-				"message": "PUT Opening",
-			})
-		})
-		v1.GET("/openings", func(ctx *gin.Context) {
-			ctx.JSON(http.StatusOK, gin.H{
-				"message": "GET Openings",
-			})
-		})
+		v1.GET("/opening", handler.CreateOpeningHandler)
+		v1.POST("/opening", handler.ShowOpeningHandler)
+		v1.DELETE("/opening", handler.DeleteOpeningHandler)
+		v1.PUT("/opening", handler.UpdateOpeningHandler)
+		v1.GET("/openings", handler.ListOpeningsHandler)
+
 	}
 
 }
