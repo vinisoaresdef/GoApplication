@@ -4,14 +4,14 @@ import "github.com/gin-gonic/gin"
 
 func Initialize() {
 
-	// print hello world
-	println("Hello World")
+	// Set the router as the default one shipped with Gin
 	router := gin.Default()
-	router.GET("/ping", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "pong",
-		})
-	})
+
+	// Initialize the routes
+
+	initializeRoutes(router)
+
+	// Start serving the application
 	router.Run(":8080") // listen and serve on 0.0.0.0:8080
 
 }
