@@ -5,6 +5,7 @@ go 1.20
 require (
 	github.com/didip/tollbooth/v6 v6.1.2
 	github.com/gin-gonic/gin v1.9.0
+	gorm.io/gorm v1.25.0
 )
 
 require (
@@ -16,6 +17,8 @@ require (
 	github.com/go-playground/universal-translator v0.18.1 // indirect
 	github.com/go-playground/validator/v10 v10.11.2 // indirect
 	github.com/goccy/go-json v0.10.0 // indirect
+	github.com/jinzhu/inflection v1.0.0 // indirect
+	github.com/jinzhu/now v1.1.5 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/klauspost/cpuid/v2 v2.0.9 // indirect
 	github.com/leodido/go-urn v1.2.1 // indirect
